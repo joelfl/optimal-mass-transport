@@ -26,7 +26,7 @@ nc = size(uv,1);
 % area of unit circle is pi, however, since we approximate boundary with
 % piecewise segments, its total area may be slightly less than pi, so we
 % compute the area directly.
-area = polyarea(disk(:,1),disk(:,2))*ones(nc,1)/nc;
+area = polyarea({disk})*ones(nc,1)/nc;
 
 %% initial power diagram
 pd = power_diagram(face,uv);
