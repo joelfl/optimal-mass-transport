@@ -4,7 +4,7 @@ gcf;
 hold on
 bd = compute_bd(pd.face);
 disk = pd.uv(bd,:);
-plot(disk(:,1),disk(:,2),'r-')
+% plot(disk(:,1),disk(:,2),'r-')
 for i = 1:length(pd.cell)
     pi = pd.dpe(pd.cell{i},:);
     plot(pi(:,1),pi(:,2),'b-');

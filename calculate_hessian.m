@@ -19,8 +19,9 @@ C = sparse(I,J,V);
 I2 = zeros(ne,1);
 J2 = zeros(ne,1);
 V2 = zeros(ne,1);
-in = inpolygon(pd.dpe(:,1),pd.dpe(:,2),cp(:,1),cp(:,2));
+in = isinpolygon(cp,pd.dpe);
 k = 1;
+p = sigma(pd.dpe);
 for i = 1:length(I)
     I2(k) = C(I(i),J(i));
     J2(k) = C(J(i),I(i));
@@ -31,7 +32,7 @@ for i = 1:length(I)
     
     switch sum(in2)
         case 2 % if both points in polygon
-            lij = norm(p1-p2)*(sigma(p1)+sigma(p2))/2;
+            lij = norm(p1-p2)*(p(I(i))+p(J(i)))/2;
         case 1 % if one point inside, one outside
             try                
                 pi = intersectEdgePolygon([p1,p2],cp);                
@@ -42,9 +43,9 @@ for i = 1:length(I)
                 error('ERROR: edge not intersect with boundary at one point')
             end
             if in2(1)
-                lij = norm(pi-p1)*(sigma(pi)+sigma(p1))/2;
+                lij = norm(pi-p1)*(sigma(pi)+p(I(i)))/2;
             else
-                lij = norm(pi-p2)*(sigma(pi)+sigma(p2))/2;
+                lij = norm(pi-p2)*(sigma(pi)+p(J(i)))/2;
             end
         case 0 % both point outside the polygon
             lij = 0;

@@ -40,7 +40,7 @@ while k < option.max_iter
     dh = dh - mean(dh);
     dh = dh - mean(dh);
     
-    fprintf('#%02d: max|dh| = %.10f\n',k,max(abs(dh)));    
+    fprintf('#%02d: max|dh| = %.10f\n',k,max(abs(dh)));
     if max(abs(dh)) < option.eps
         break
     end

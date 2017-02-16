@@ -11,7 +11,7 @@ nc = size(pd.cell,1);
 D = zeros(nc,1);
 
 in = true(nc,1);
-in2 = inpolygon(pd.dpe(:,1),pd.dpe(:,2),cp(:,1),cp(:,2));
+in2 = isinpolygon(cp,pd.dpe);
 % find out cells not in cp completely
 for i = 1:nc
     ci = pd.cell{i};
