@@ -22,6 +22,9 @@ V2 = zeros(ne,1);
 in = isinpolygon(cp,pd.dpe);
 k = 1;
 p = sigma(pd.dpe);
+if length(p(:)) == 1
+    p = ones(size(pd.dpe,1),1)*p;
+end
 for i = 1:length(I)
     I2(k) = C(I(i),J(i));
     J2(k) = C(J(i),I(i));
